@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Wed, 23 Jul 2025 02:02:57 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>应用推荐</title><link>https://hujunalex1.github.io/post/ying-yong-tui-jian.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Wed, 23 Jul 2025 02:05:59 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>应用推荐</title><link>https://hujunalex1.github.io/post/ying-yong-tui-jian.html</link><description>
 
 ## Windows 上好用的软件
 
@@ -31,9 +31,9 @@
 - LocalSend ，一个局域网内开源传输工具
 - f.lux  调节屏幕亮度
 - Hidden bar  mac 菜单栏工具 
-- **TheBoringNotch：一个开源的 Mac 刘海工具**  [https://theboring.name/](https://theboring.name/)
-- - **Input Source Pro**  自动切换输入法 https://inputsource.pro/zh-CN
-- **Mos**  https://mos.caldis.me/
+- TheBoringNotch：一个开源的 Mac 刘海工具 [https://theboring.name/](https://theboring.name/)
+- nput Source Pro:  自动切换输入法 https://inputsource.pro/zh-CN
+- Mos 鼠标滑动优化  https://mos.caldis.me/
 
 
 ## 安卓App 
