@@ -1,5 +1,109 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Wed, 23 Jul 2025 02:05:59 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>应用推荐</title><link>https://hujunalex1.github.io/post/ying-yong-tui-jian.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Mon, 04 Aug 2025 05:48:19 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>爬取 x 东商品数据</title><link>https://hujunalex1.github.io/post/pa-qu-%20x%20-dong-shang-pin-shu-ju.html</link><description>```python
+import time
+import random
+from DrissionPage import ChromiumPage,ChromiumOptions
+
+class JDProductSpider:
+    def __init__(self):
+        '''
+        初始化爬虫
+        '''
+        co = ChromiumOptions()
+        co.set_user_data_path('./chrome_data')
+        co.set_local_port(9222)
+        co.set_argument('--start-maximized')  # 最大化窗口
+        co.set_argument('--disable-blink-features=AutomationControlled')  # 避免被检测
+        self.page = ChromiumPage(co)
+        self.base_url = 'https://search.jd.com/Search'
+
+    def search_products(self, keyword, max_pages=1):
+        '''
+        搜索商品并获取信息
+        '''
+        products = []
+
+        for page in range(1, max_pages + 1):
+            print(f'正在爬取第 {page} 页...')
+
+            # 构造搜索URL
+            search_url = f'{self.base_url}?keyword={keyword}&amp;page={page}'
+            print(f'访问URL: {search_url}')
+            self.page.get(search_url)
+
+            # 等待页面加载完成
+            print('等待页面加载...')
+            time.sleep(random.uniform(3, 5))  # 增加等待时间
+
+            # 检查页面标题和内容
+            print(f'页面标题: {self.page.title}')
+            # 打印部分页面内容用于调试
+            print(f'页面部分HTML: {self.page.html[:500]}')
+
+            # 滚动页面以触发懒加载
+            print('滚动页面以加载更多内容...')
+            for i in range(5):  # 增加滚动次数
+                self.page.scroll.down(300)
+                time.sleep(1)  # 增加每次滚动后的等待时间
+
+            # 等待元素出现
+            print('等待商品元素加载...')
+            self.page.wait.eles_loaded('.gl-item', timeout=10)
+
+            # 获取商品列表
+            product_items = self.page.eles('.gl-item')
+            print(f'找到 {len(product_items)} 个商品元素')
+
+            # 如果没有找到商品，尝试其他选择器
+            if len(product_items) == 0:
+                print('尝试备用选择器...')
+                product_items = self.page.eles('[data-sku]') or self.page.eles('.goods-item')
+                print(f'备用选择器找到 {len(product_items)} 个商品元素')
+
+            if len(product_items) == 0:
+                print('警告：未找到任何商品元素')
+                # 打印更多页面内容用于分析
+                print('页面完整HTML结构（前1000字符）:')
+                print(self.page.html[:1000])
+
+            for i, item in enumerate(product_items):
+                print(f'处理第 {i + 1} 个商品...')
+                try:
+                    product_info = self._extract_product_info(item)
+                    if product_info:
+                        products.append(product_info)
+                        print(f'已添加商品，当前共 {len(products)} 个商品')
+                    else:
+                        print('未提取到有效商品信息')
+
+                    # 限制处理数量以便调试
+                    # if i &gt;= 2:  # 只处理前3个商品进行测试
+                    #     print('为调试目的，仅处理前3个商品')
+                    #     break
+                except Exception as e:
+                    print(f'提取第 {i + 1} 个商品信息时出错: {e}')
+                    continue
+
+            time.sleep(random.uniform(2, 3))
+
+        return products
+
+    # 在 _extract_product_info 方法中添加更详细的调试信息
+    def _extract_product_info(self, item):
+        '''
+        提取单个商品信息
+        '''
+        try:
+            print('开始提取商品信息...')
+
+            # 提取标题 - 处理title属性为空的情况
+            title_ele = item.ele('.p-name p-name-type-2').ele('tag:a')
+            print(f'标题元素: {title_ele}')
+            if title_ele:
+                print(f'title_ele 的 HTML 内容: {title_ele.html}')
+                print(f'title_ele 的所有属性: {title_ele.attrs}')
+            else:
+                print('title_ele 元素未找到。</description><guid isPermaLink="true">https://hujunalex1.github.io/post/pa-qu-%20x%20-dong-shang-pin-shu-ju.html</guid><pubDate>Mon, 04 Aug 2025 05:47:45 +0000</pubDate></item><item><title>应用推荐</title><link>https://hujunalex1.github.io/post/ying-yong-tui-jian.html</link><description>
 
 ## Windows 上好用的软件
 
