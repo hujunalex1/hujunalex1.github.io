@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Mon, 04 Aug 2025 05:48:19 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>爬取 x 东商品数据</title><link>https://hujunalex1.github.io/post/pa-qu-%20x%20-dong-shang-pin-shu-ju.html</link><description>```python
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Neo备忘录</title><link>https://hujunalex1.github.io</link><description>记录世界,记录你</description><copyright>Neo备忘录</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/19466514?v=4</url><title>avatar</title><link>https://hujunalex1.github.io</link></image><lastBuildDate>Tue, 02 Sep 2025 09:58:46 +0000</lastBuildDate><managingEditor>Neo备忘录</managingEditor><ttl>60</ttl><webMaster>Neo备忘录</webMaster><item><title>获取 xsh搜索结果页数据</title><link>https://hujunalex1.github.io/post/huo-qu-%20xsh-sou-suo-jie-guo-ye-shu-ju.html</link><description>from DrissionPage import WebPage,ChromiumOptions
+import time
+
+def get_xiaohongshu_search_results(keyword):
+    '''
+    使用 DrissionPage 获取小红书搜索结果页数据。</description><guid isPermaLink="true">https://hujunalex1.github.io/post/huo-qu-%20xsh-sou-suo-jie-guo-ye-shu-ju.html</guid><pubDate>Tue, 02 Sep 2025 09:58:19 +0000</pubDate></item><item><title>爬取 x 东商品数据</title><link>https://hujunalex1.github.io/post/pa-qu-%20x%20-dong-shang-pin-shu-ju.html</link><description>```python
 import time
 import random
 from DrissionPage import ChromiumPage,ChromiumOptions
